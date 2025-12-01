@@ -1,0 +1,15 @@
+<h1>Subscribers</h1>
+<a href="/subscribers/new">Add New</a>
+<table>
+  <% subscribers.forEach(subscriber => { %>
+    <tr>
+      <td><a href="/subscribers/<%= subscriber._id %>"><%= subscriber.name %></a></td>
+      <td><a href="/subscribers/<%= subscriber._id %>/edit">Edit</a></td>
+      <td>
+        <form action="/subscribers/<%= subscriber._id %>?_method=DELETE" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</table>
