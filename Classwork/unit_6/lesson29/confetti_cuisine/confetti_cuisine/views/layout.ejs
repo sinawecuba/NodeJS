@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1">
+	<title>Confetti Cuisine</title>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/confetti_cuisine.css">
+</head>
+
+<body>
+	<div id="nav">
+		<div class="col-sm nav-align">
+			<h1 id="title">Confetti Cuisine</h1>
+		</div>
+		<div class="col-sm nav-align">
+			<a href="/">
+				<span class="button">Home</span>
+			</a>
+			<a href="/courses">
+				<span class="button">Courses</span>
+			</a>
+			<a href="/subscribers/new">
+				<span class="button">Contact</span>
+			</a>
+			<a href="/users">
+				<span class="button">Users</span>
+			</a>
+			<!-- ADD THIS BUTTON -->
+			<button id="modal-button" type="button" class="button" data-toggle="modal" data-target="#myModal">
+				Latest Courses
+			</button>
+		</div>
+
+		<div class="login">
+			<% if (loggedIn) { %>
+			<p>Logged in as
+				<a href="<%=`/users/${currentUser._id}`%>">
+					<%= currentUser.fullName %></a>
+				<span class="log-out">
+					<a href="/users/logout">Log out</a>
+				</span>
+			</p>
+			<%} else {%>
+			<a href="/users/login">Log In</a>
+			<% } %>
+		</div>
+	</div>
+	
+	<div class="flashes">
+		<% if (flashMessages) { %>
+		<% if (flashMessages.success) { %>
+		<div class="flash success">
+			<%= flashMessages.success %>
+		</div>
+		<% } else if (flashMessages.error) { %>
+		<div class="flash error">
+			<%= flashMessages.error %>
+		</div>
+		<% } %>
+		<% } %>
+	</div>
+
+	<div class="container">
+		<%- body %>
+	</div>
+
+	<!-- ADD THE MODAL HERE (before closing body tag) -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Latest Courses</h4>
+				</div>
+				<div class="modal-body">
+					<!-- Courses will be loaded here -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ADD THESE SCRIPTS (jQuery MUST come before Bootstrap and your custom JS) -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/confettiCuisine.js"></script>
+</body>
+
+</html>
