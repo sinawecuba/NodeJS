@@ -1,0 +1,16 @@
+<h1><%= user.name %></h1>
+<p>Email: <%= user.email %></p>
+<p>ZIP Code: <%= user.zipCode %></p>
+
+<a href="/users">Back to Users</a>
+
+<!-- new links below -->
+<p>
+  <a href="<%=`/users/${user._id}/edit` %>">Edit</a>
+</p>
+<p>
+  <a href="<%=`/users/${user._id}/delete?_method=DELETE` %>"
+     onclick="return confirm('Are you sure you want to delete this record?')">
+     Delete
+  </a>
+</p>
